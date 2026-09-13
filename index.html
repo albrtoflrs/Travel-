@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura Viajes | Experiencias y Destinos Exclusivos</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdf9',
+              100: '#ccfbe8',
+              500: '#14b881',
+              600: '#0d9468',
+              700: '#0b7654',
+              900: '#074331',
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans min-h-screen flex flex-col">
+
+  <!-- ================= NAVBAR ================= -->
+  <header class="fixed top-0 left-0 right-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-100 transition-all">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2.5 group">
+        <div class="w-10 h-10 rounded-xl bg-brand-600 flex items-center justify-center text-white shadow-lg shadow-brand-600/30 group-hover:scale-105 transition-transform">
+          <i data-lucide="compass" class="w-6 h-6"></i>
+        </div>
+        <span class="text-xl font-bold tracking-tight text-slate-900">Aura<span class="text-brand-600">Viajes</span></span>
+      </a>
+
+      <!-- Navegación Escritorio -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+        <a href="#destinos" class="hover:text-brand-600 transition-colors">Destinos</a>
+        <a href="#experiencias" class="hover:text-brand-600 transition-colors">Experiencias</a>
+        <a href="#beneficios" class="hover:text-brand-600 transition-colors">Por qué nosotros</a>
+        <a href="#contacto" class="hover:text-brand-600 transition-colors">Contacto</a>
+      </nav>
+
+      <!-- Acción -->
+      <div class="flex items-center gap-3">
+        <a href="#destinos" class="bg-slate-900 hover:bg-brand-600 text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-200 shadow-sm hover:shadow-md">
+          Ver Paquetes
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO SECTION ================= -->
+  <section class="relative pt-36 pb-28 md:pt-44 md:pb-36 bg-gradient-to-b from-brand-50/50 via-white to-slate-50 overflow-hidden">
+    <!-- Círculo de luz decorativo -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[650px] h-[350px] bg-brand-500/10 blur-[130px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto px-6 relative z-10 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200 shadow-xs mb-6">
+        <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+        <span class="text-xs font-semibold text-slate-600 tracking-wide uppercase">Temporada de Reservas Abierta</span>
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl font-extrabold text-slate-950 tracking-tight leading-[1.15] mb-6 max-w-4xl mx-auto">
+        Diseñamos viajes extraordinarios para mentes curiosas.
+      </h1>
+      <p class="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed mb-12">
+        Planes con todo incluido, guías locales certificados y experiencias curadas para que solo te preocupes por disfrutar.
+      </p>
+
+      <!-- ================= BUSCADOR FLOTANTE ================= -->
+      <div class="max-w-4xl mx-auto bg-white p-3 rounded-3xl shadow-xl shadow-slate-200/60 border border-slate-100 text-left">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-3 p-2">
+          
+          <!-- Filtro: Destino -->
+          <div class="p-2.5 rounded-2xl hover:bg-slate-50 transition-colors">
+            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Destino</label>
+            <div class="flex items-center gap-2 text-slate-800 font-medium">
+              <i data-lucide="map-pin" class="w-4 h-4 text-brand-600 shrink-0"></i>
+              <select id="filter-destination" class="w-full bg-transparent focus:outline-none text-sm font-semibold cursor-pointer">
+                <option value="all">Todos los destinos</option>
+                <option value="playa">Playas & Islas</option>
+                <option value="montana">Montaña & Nieve</option>
+                <option value="cultural">Ciudades Históricas</option>
+                <option value="selva">Selva & Ecoturismo</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Filtro: Duración -->
+          <div class="p-2.5 rounded-2xl hover:bg-slate-50 transition-colors md:border-l border-slate-100">
+            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Tipo de Plan</label>
+            <div class="flex items-center gap-2 text-slate-800 font-medium">
+              <i data-lucide="calendar" class="w-4 h-4 text-brand-600 shrink-0"></i>
+              <select id="filter-duration" class="w-full bg-transparent focus:outline-none text-sm font-semibold cursor-pointer">
+                <option value="all">Cualquier duración</option>
+                <option value="short">Fin de semana (3-4 días)</option>
+                <option value="medium">Semanal (5-8 días)</option>
+                <option value="long">Largo plazo (9+ días)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Filtro: Presupuesto Max -->
+          <div class="p-2.5 rounded-2xl hover:bg-slate-50 transition-colors md:border-l border-slate-100">
+            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Presupuesto Máx.</label>
+            <div class="flex items-center gap-2 text-slate-800 font-medium">
+              <i data-lucide="dollar-sign" class="w-4 h-4 text-brand-600 shrink-0"></i>
+              <select id="filter-budget" class="w-full bg-transparent focus:outline-none text-sm font-semibold cursor-pointer">
+                <option value="99999">Sin límite</option>
+                <option value="600">Hasta $600</option>
+                <option value="1200">Hasta $1,200</option>
+                <option value="2000">Hasta $2,000</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Botón de Búsqueda -->
+          <div class="flex items-center">
+            <button onclick="applyFilters()" class="w-full h-full min-h-[50px] bg-brand-600 hover:bg-brand-700 text-white rounded-2xl font-bold flex items-center justify-center gap-2 shadow-lg shadow-brand-600/25 transition-transform active:scale-95">
+              <i data-lucide="search" class="w-4 h-4"></i>
+              <span>Explorar</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PAQUETES DESTACADOS ================= -->
+  <section id="destinos" class="py-20 max-w-7xl mx-auto px-6 w-full flex-1">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+      <div>
+        <p class="text-brand-600 font-bold text-sm tracking-wider uppercase mb-1">Catálogo Destacado</p>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-950 tracking-tight">Paquetes Populares de Temporada</h2>
+      </div>
+      <p id="packages-count" class="text-sm font-semibold text-slate-500">Mostrando todos los paquetes</p>
+    </div>
+
+    <!-- Grid de Paquetes -->
+    <div id="packages-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Inyectado dinámicamente con JS -->
+    </div>
+  </section>
+
+  <!-- ================= MODAL DE RESERVA ================= -->
+  <div id="booking-modal" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-xs hidden items-center justify-center p-4">
+    <div class="bg-white w-full max-w-lg rounded-3xl overflow-hidden shadow-2xl border border-slate-100 flex flex-col max-h-[90vh]">
+      <!-- Cabecera Modal -->
+      <div class="p-6 border-b border-slate-100 flex items-center justify-between">
+        <div>
+          <h3 id="modal-title" class="text-xl font-bold text-slate-900">Completar Reserva</h3>
+          <p id="modal-subtitle" class="text-xs font-semibold text-slate-500">Detalles de la cotización</p>
+        </div>
+        <button onclick="closeModal()" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-500 transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- Cuerpo del Formulario -->
+      <form id="booking-form" onsubmit="handleBookingSubmit(event)" class="p-6 overflow-y-auto space-y-4 text-left">
+        <div>
+          <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Nombre Completo</label>
+          <input required type="text" placeholder="Ej. Carlos Mendoza" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-brand-600 focus:ring-1 focus:ring-brand-600 outline-hidden text-sm">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Email</label>
+            <input required type="email" placeholder="nombre@correo.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-brand-600 focus:ring-1 focus:ring-brand-600 outline-hidden text-sm">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Teléfono / WhatsApp</label>
+            <input required type="tel" placeholder="+58 412..." class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-brand-600 focus:ring-1 focus:ring-brand-600 outline-hidden text-sm">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Fecha de Viaje</label>
+            <input required type="date" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-brand-600 focus:ring-1 focus:ring-brand-600 outline-hidden text-sm">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-600 uppercase mb-1">Número de Personas</label>
+            <input id="modal-passengers" required type="number" min="1" max="10" value="1" onchange="updateTotalPrice()" class="w-full px-4 py-2.5 rounded-xl border border-slate-200 focus:border-brand-600 focus:ring-1 focus:ring-brand-600 outline-hidden text-sm">
+          </div>
+        </div>
+
+        <!-- Resumen de Costo -->
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 flex items-center justify-between mt-4">
+          <div>
+            <span class="text-xs text-slate-500 font-medium block">Total Estimado</span>
+            <span id="modal-total-price" class="text-2xl font-black text-slate-900">$0</span>
+          </div>
+          <span class="text-xs bg-brand-100 text-brand-700 px-3 py-1 rounded-full font-bold">Impuestos incluidos</span>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 bg-brand-600 hover:bg-brand-700 text-white rounded-xl font-bold tracking-wide transition-all shadow-md active:scale-98 flex items-center justify-center gap-2">
+          <span>Confirmar y Enviar Solicitud</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-white border-t border-slate-100 py-12 mt-auto">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-brand-600 flex items-center justify-center text-white">
+          <i data-lucide="compass" class="w-5 h-5"></i>
+        </div>
+        <span class="font-bold text-slate-900">Aura Viajes</span>
+      </div>
+      <p class="text-xs text-slate-500">© 2026 Aura Viajes. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- ================= LÓGICA JAVASCRIPT ================= -->
+  <script>
+    // Datos de ejemplo de paquetes
+    const packages = [
+      {
+        id: 1,
+        title: "Archipiélago Los Roques",
+        location: "Venezuela",
+        category: "playa",
+        days: 4,
+        durationCategory: "short",
+        price: 580,
+        rating: 4.9,
+        reviews: 84,
+        image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+        badge: "Más Vendido"
+      },
+      {
+        id: 2,
+        title: "Expedición Salto Ángel & Canaima",
+        location: "Bolívar, Venezuela",
+        category: "selva",
+        days: 6,
+        durationCategory: "medium",
+        price: 920,
+        rating: 5.0,
+        reviews: 112,
+        image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80",
+        badge: "Aventura"
+      },
+      {
+        id: 3,
+        title: "Ruta Histórica de Cartagena",
+        location: "Colombia",
+        category: "cultural",
+        days: 5,
+        durationCategory: "medium",
+        price: 490,
+        rating: 4.8,
+        reviews: 67,
+        image: "https://images.unsplash.com/photo-1583997052103-b4a1fad8e185?auto=format&fit=crop&w=800&q=80",
+        badge: "Cultural"
+      },
+      {
+        id: 4,
+        title: "Ascenso a los Andes & Páramos",
+        location: "Mérida",
+        category: "montana",
+        days: 4,
+        durationCategory: "short",
+        price: 350,
+        rating: 4.7,
+        reviews: 43,
+        image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
+        badge: "Eco-Tour"
+      },
+      {
+        id: 5,
+        title: "Crucero & Snorkel en Islas del Caribe",
+        location: "Caribe Sur",
+        category: "playa",
+        days: 8,
+        durationCategory: "medium",
+        price: 1350,
+        rating: 4.9,
+        reviews: 130,
+        image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
+        badge: "Todo Incluido"
+      },
+      {
+        id: 6,
+        title: "Cusco & Ciudadela de Machu Picchu",
+        location: "Perú",
+        category: "cultural",
+        days: 7,
+        durationCategory: "medium",
+        price: 1100,
+        rating: 4.9,
+        reviews: 95,
+        image: "https://images.unsplash.com/photo-1526392060635-9d6019884377?auto=format&fit=crop&w=800&q=80",
+        badge: "Inolvidable"
+      }
+    ];
+
+    let selectedPackage = null;
+
+    // Renderizar tarjetas
+    function renderPackages(data) {
+      const grid = document.getElementById('packages-grid');
+      const countLabel = document.getElementById('packages-count');
+      
+      grid.innerHTML = '';
+      countLabel.textContent = `Mostrando ${data.length} de ${packages.length} paquetes`;
+
+      if (data.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full py-16 text-center text-slate-400">
+            <i data-lucide="compass" class="w-12 h-12 mx-auto mb-3 opacity-40"></i>
+            <p class="font-medium">No se encontraron destinos que coincidan con los filtros.</p>
+          </div>`;
+        lucide.createIcons();
+        return;
+      }
+
+      data.forEach(pkg => {
+        const card = document.createElement('div');
+        card.className = "bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group";
+        card.innerHTML = `
+          <!-- Imagen -->
+          <div class="relative h-60 overflow-hidden">
+            <img src="${pkg.image}" alt="${pkg.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-xs font-extrabold text-slate-800">
+              ${pkg.badge}
+            </span>
+            <span class="absolute bottom-4 right-4 bg-slate-950/80 backdrop-blur-md text-white px-2.5 py-1 rounded-lg text-xs font-semibold flex items-center gap-1">
+              <i data-lucide="clock" class="w-3.5 h-3.5"></i> ${pkg.days} días
+            </span>
+          </div>
+
+          <!-- Contenido -->
+          <div class="p-6 flex flex-col flex-1">
+            <div class="flex items-center justify-between text-xs text-slate-500 font-semibold mb-2">
+              <span class="flex items-center gap-1 text-slate-600">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-brand-600"></i> ${pkg.location}
+              </span>
+              <span class="flex items-center gap-1 text-amber-500 font-bold">
+                <i data-lucide="star" class="w-3.5 h-3.5 fill-amber-500"></i> ${pkg.rating} <span class="text-slate-400 font-normal">(${pkg.reviews})</span>
+              </span>
+            </div>
+
+            <h3 class="text-lg font-bold text-slate-900 mb-4 group-hover:text-brand-600 transition-colors">${pkg.title}</h3>
+
+            <div class="mt-auto pt-4 border-t border-slate-100 flex items-center justify-between">
+              <div>
+                <span class="text-xs text-slate-400 font-medium block">Desde</span>
+                <span class="text-2xl font-black text-slate-900">$${pkg.price}</span>
+                <span class="text-xs text-slate-500"> / persona</span>
+              </div>
+              <button onclick="openBookingModal(${pkg.id})" class="bg-slate-100 hover:bg-brand-600 hover:text-white text-slate-900 px-4 py-2 rounded-xl text-sm font-bold transition-all">
+                Reservar
+              </button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+
+      lucide.createIcons();
+    }
+
+    // Filtrar paquetes
+    function applyFilters() {
+      const dest = document.getElementById('filter-destination').value;
+      const dur = document.getElementById('filter-duration').value;
+      const budget = parseFloat(document.getElementById('filter-budget').value);
+
+      const filtered = packages.filter(pkg => {
+        const matchDest = (dest === 'all') || (pkg.category === dest);
+        const matchDur = (dur === 'all') || (pkg.durationCategory === dur);
+        const matchBudget = pkg.price <= budget;
+        return matchDest && matchDur && matchBudget;
+      });
+
+      renderPackages(filtered);
+    }
+
+    // Manejo de Modal
+    function openBookingModal(pkgId) {
+      selectedPackage = packages.find(p => p.id === pkgId);
+      if (!selectedPackage) return;
+
+      document.getElementById('modal-title').textContent = selectedPackage.title;
+      document.getElementById('modal-subtitle').textContent = `${selectedPackage.location} • ${selectedPackage.days} días`;
+      document.getElementById('modal-passengers').value = 1;
+      updateTotalPrice();
+
+      const modal = document.getElementById('booking-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('booking-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function updateTotalPrice() {
+      if (!selectedPackage) return;
+      const count = parseInt(document.getElementById('modal-passengers').value) || 1;
+      const total = selectedPackage.price * count;
+      document.getElementById('modal-total-price').textContent = `$${total.toLocaleString()}`;
+    }
+
+    function handleBookingSubmit(e) {
+      e.preventDefault();
+      alert(`¡Solicitud enviada con éxito para ${selectedPackage.title}! Nos comunicaremos en breve.`);
+      closeModal();
+    }
+
+    // Inicializar al cargar
+    document.addEventListener('DOMContentLoaded', () => {
+      renderPackages(packages);
+    });
+  </script>
+</body>
+</html>
